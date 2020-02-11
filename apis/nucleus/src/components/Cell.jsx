@@ -84,7 +84,7 @@ const LoadingSn = ({ delay = 750 }) => {
   return showLoading && <Loading />;
 };
 
-const handleModal = ({ sn, layout, model }) => {
+const handleModal = ({ sn, layout, model }) => {  //eslint-disable-line
   const selections = sn && sn.component && sn.component.selections;
   if (!selections || !selections.id || !model.id) {
     return;
@@ -187,7 +187,8 @@ const Cell = forwardRef(({ corona, model, initialSnOptions, initialError, onMoun
       } else {
         dispatch({ type: 'RENDER' });
       }
-      handleModal({ sn: state.sn, layout, model });
+      // this function causes problems when calling beginSelections
+      // handleModal({ sn: state.sn, layout, model });
     };
     const load = async (withLayout, version) => {
       const sn = await loadType({
